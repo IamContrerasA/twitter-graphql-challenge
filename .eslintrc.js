@@ -1,0 +1,16 @@
+module.exports = {
+  root: true,
+  parserOptions: {
+    project: './tsconfig.eslint.json',
+  },
+  extends: [
+    '@ravn-dev/eslint-config-ravn/base',
+    '@ravn-dev/eslint-config-ravn/jest',
+    '@ravn-dev/eslint-config-ravn/react',
+    '@ravn-dev/eslint-config-ravn/typescript',
+  ],
+  rules: {
+    '@typescript-eslint/no-unsafe-member-access': 'off',
+    '@typescript-eslint/no-unsafe-assignment': 'off',
+  },
+}

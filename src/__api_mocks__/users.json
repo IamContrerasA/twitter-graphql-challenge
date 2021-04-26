@@ -1,0 +1,102 @@
+[
+  {
+    "firstName": "Avery",
+    "lastName": "Walters",
+    "dob": "1996-11-02T18:50:48.637Z",
+    "picture": {
+      "large": "https://randomuser.me/api/portraits/women/15.jpg",
+      "medium": "https://randomuser.me/api/portraits/med/women/15.jpg",
+      "thumbnail": "https://randomuser.me/api/portraits/thumb/women/15.jpg"
+    }
+  },
+  {
+    "firstName": "Mille",
+    "lastName": "Jensen",
+    "dob": "1976-10-30T20:48:23.176Z",
+    "picture": {
+      "large": "https://randomuser.me/api/portraits/men/4.jpg",
+      "medium": "https://randomuser.me/api/portraits/med/men/4.jpg",
+      "thumbnail": "https://randomuser.me/api/portraits/thumb/men/4.jpg"
+    }
+  },
+  {
+    "firstName": "Armin",
+    "lastName": "Leroy",
+    "dob": "1978-10-29T02:07:45.493Z",
+    "picture": {
+      "large": "https://randomuser.me/api/portraits/men/55.jpg",
+      "medium": "https://randomuser.me/api/portraits/med/men/55.jpg",
+      "thumbnail": "https://randomuser.me/api/portraits/thumb/men/55.jpg"
+    }
+  },
+  {
+    "firstName": "Aapo",
+    "lastName": "Mikkola",
+    "dob": "1993-03-14T04:33:22.319Z",
+    "picture": {
+      "large": "https://randomuser.me/api/portraits/men/97.jpg",
+      "medium": "https://randomuser.me/api/portraits/med/men/97.jpg",
+      "thumbnail": "https://randomuser.me/api/portraits/thumb/men/97.jpg"
+    }
+  },
+  {
+    "firstName": "Frederik",
+    "lastName": "Pedersen",
+    "dob": "1966-07-25T17:24:29.959Z",
+    "picture": {
+      "large": "https://randomuser.me/api/portraits/men/77.jpg",
+      "medium": "https://randomuser.me/api/portraits/med/men/77.jpg",
+      "thumbnail": "https://randomuser.me/api/portraits/thumb/men/77.jpg"
+    }
+  },
+  {
+    "firstName": "Josje",
+    "lastName": "Alleman",
+    "dob": "1991-07-12T16:42:39.269Z",
+    "picture": {
+      "large": "https://randomuser.me/api/portraits/women/33.jpg",
+      "medium": "https://randomuser.me/api/portraits/med/women/33.jpg",
+      "thumbnail": "https://randomuser.me/api/portraits/thumb/women/33.jpg"
+    }
+  },
+  {
+    "firstName": "Jakub",
+    "lastName": "Van de Scheur",
+    "dob": "1974-11-30T07:33:44.131Z",
+    "picture": {
+      "large": "https://randomuser.me/api/portraits/men/58.jpg",
+      "medium": "https://randomuser.me/api/portraits/med/men/58.jpg",
+      "thumbnail": "https://randomuser.me/api/portraits/thumb/men/58.jpg"
+    }
+  },
+  {
+    "firstName": "Lucy",
+    "lastName": "Pearson",
+    "dob": "1955-02-09T13:36:21.162Z",
+    "picture": {
+      "large": "https://randomuser.me/api/portraits/women/41.jpg",
+      "medium": "https://randomuser.me/api/portraits/med/women/41.jpg",
+      "thumbnail": "https://randomuser.me/api/portraits/thumb/women/41.jpg"
+    }
+  },
+  {
+    "firstName": "Anton",
+    "lastName": "Wirtanen",
+    "dob": "1987-03-21T02:24:54.100Z",
+    "picture": {
+      "large": "https://randomuser.me/api/portraits/men/50.jpg",
+      "medium": "https://randomuser.me/api/portraits/med/men/50.jpg",
+      "thumbnail": "https://randomuser.me/api/portraits/thumb/men/50.jpg"
+    }
+  },
+  {
+    "firstName": "Ema",
+    "lastName": "Førde",
+    "dob": "1953-08-26T16:50:34.475Z",
+    "picture": {
+      "large": "https://randomuser.me/api/portraits/women/66.jpg",
+      "medium": "https://randomuser.me/api/portraits/med/women/66.jpg",
+      "thumbnail": "https://randomuser.me/api/portraits/thumb/women/66.jpg"
+    }
+  }
+]
