@@ -2,6 +2,7 @@ import * as React from 'react'
 
 type TweetsContextType = {
   tweetsData: any[]
+  newTweet: (arg: any) => void
 }
 
 const TweetsContext = React.createContext<TweetsContextType | undefined>(
@@ -83,8 +84,20 @@ const TweetsManagerContext = ({ children }: ChildrenProps) => {
     getCurrentUserData().catch(() => 'Error on get user data')
   }, [])
 
+  async function newTweet(args: any) {
+    const response = new Promise((resolve) => {
+      setTimeout(() => {
+        // eslint-disable-next-line no-console
+        resolve(console.log('my newTweet api'))
+      }, 500)
+    })
+    await response
+    setTweetsData([args, ...tweetsData])
+  }
+
   const contextValue: any = {
     tweetsData,
+    newTweet,
   }
 
   return (

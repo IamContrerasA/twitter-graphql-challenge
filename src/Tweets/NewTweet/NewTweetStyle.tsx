@@ -1,5 +1,9 @@
 import styled from 'styled-components'
 
+type NewTweetProps = {
+  onChange: any
+}
+
 const NewTweetStyle = styled.div`
   display: flex;
   flex-direction: row;
@@ -22,7 +26,9 @@ const NewTweetWrapper = styled.div`
   flex-direction: column;
   justify-content: space-around;
 `
-const NewTweetContent = styled.input`
+const NewTweetContent = styled.textarea<NewTweetProps>`
+  font-family: 'Roboto', sans-serif;
+  resize: none;
   border: none;
   background: transparent;
   outline: none;

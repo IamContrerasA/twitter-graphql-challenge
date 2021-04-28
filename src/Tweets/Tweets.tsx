@@ -63,7 +63,7 @@ function Tweets() {
               <TweetInfo>
                 {
                   // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-                  tweet.info.split(`\n`).map((e: string, i: number) => {
+                  tweet.info?.split(`\n`).map((e: string, i: number) => {
                     return <div key={i}>{handleHashtag(e)}</div>
                   })
                 }
