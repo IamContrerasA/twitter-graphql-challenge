@@ -1,24 +1,28 @@
 import * as React from 'react'
+import { Trends } from '../Trends'
+import { Twitts } from '../Twitts'
+import { NewTwitt } from '../Twitts/NewTwitt'
 import { NavBar } from '../ui/NavBar'
 import { SideBar } from '../ui/SideBar'
-import { HomeStyle } from './HomeStyle'
+import {
+  HomeStyle,
+  HomeContentStyle,
+  HomeContentTwittsScroll,
+} from './HomeStyle'
 
 function Home() {
   return (
     <HomeStyle>
-      <NavBar />
-
-      <div
-        style={{
-          color: 'white',
-          border: '1px',
-          borderStyle: 'solid',
-          borderColor: '#92a8d1',
-        }}
-      >
-        Mt twitter asd
-      </div>
       <SideBar />
+      <HomeContentStyle>
+        <NavBar />
+        <NewTwitt />
+        <HomeContentTwittsScroll>
+          <Twitts />
+          <Twitts />
+        </HomeContentTwittsScroll>
+      </HomeContentStyle>
+      <Trends />
     </HomeStyle>
   )
 }

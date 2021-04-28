@@ -1,24 +1,13 @@
 import * as React from 'react'
-import {
-  NavStyle,
-  NavMenusStyle,
-  NavBrandStyle,
-  NavBrandLogoStyle,
-  NavBrandAvatarImgStyle,
-} from './NavBarStyle'
+import { Icons } from '../../Icons'
+import { NavStyle } from './NavBarStyle'
 
 function NavBar() {
   return (
-    <div aria-label="navBar">
-      <NavStyle>
-        <NavMenusStyle>
-          <NavBrandStyle>
-            <NavBrandLogoStyle />
-            <NavBrandAvatarImgStyle alt="avatarImg" />
-          </NavBrandStyle>
-        </NavMenusStyle>
-      </NavStyle>
-    </div>
+    <NavStyle>
+      Latest Tweets
+      <Icons tag="Hero" width="22.5px" height="22.5px" fill="#1da1f2" />
+    </NavStyle>
   )
 }
 export { NavBar }

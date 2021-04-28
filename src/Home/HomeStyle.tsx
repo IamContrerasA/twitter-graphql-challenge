@@ -3,7 +3,20 @@ import styled from 'styled-components'
 const HomeStyle = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   width: 100%;
 `
 
-export { HomeStyle }
+const HomeContentStyle = styled.div`
+  color: white;
+  width: 800px;
+  border: 1px solid #2f3336;
+  border-bottom: none;
+  border-top: none;
+`
+
+const HomeContentTwittsScroll = styled.div`
+  max-height: 630px;
+  overflow: auto;
+`
+export { HomeStyle, HomeContentStyle, HomeContentTwittsScroll }
