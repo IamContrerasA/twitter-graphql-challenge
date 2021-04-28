@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const TwittsStyle = styled.div`
+const TweetsStyle = styled.div`
   display: flex;
   flex-direction: row;
   font-size: 15px;
@@ -8,76 +8,76 @@ const TwittsStyle = styled.div`
   border-bottom: 1px solid #2f3336;
 `
 
-const TwittProfilePhoto = styled.img`
+const TweetProfilePhoto = styled.img`
   width: 40px;
   height: 40px;
   border-radius: 50%;
   margin-right: 10px;
 `
 
-const TwittHeader = styled.div`
+const TweetHeader = styled.div`
   font-weight: bold;
   font-size: 15px;
   display: flex;
   align-items: center;
 `
 
-const TwittHeaderUserInfoName = styled.div`
+const TweetHeaderUserInfoName = styled.div`
   margin-right: 7.5px;
 `
 
-const TwittHeaderUserInfoPublic = styled.div`
+const TweetHeaderUserInfoPublic = styled.div`
   font-weight: normal;
   color: #6e767d;
   margin-left: 7.5px;
 `
 
-const TwittHeaderUserInfoTimeAgo = styled.div`
+const TweetHeaderUserInfoTimeAgo = styled.div`
   color: #6e767d;
   margin-left: 7.5px;
 `
 
-const TwittInfo = styled.div`
+const TweetInfo = styled.div`
   margin-top: 10px;
   margin-bottom: 10px;
   line-height: 1.2;
 `
 
-const TwittInfoHashtag = styled.span`
+const TweetInfoHashtag = styled.span`
   color: #1da1f2;
 `
 
-const TwittAditional = styled.div`
+const TweetAditional = styled.div`
   border: 1px solid #6e767d;
   box-sizing: border-box;
   border-radius: 10px;
 `
 
-const TwittPhoto = styled.img`
+const TweetPhoto = styled.img`
   width: 100%;
   border-radius: 9px;
 `
 
-const TwittAditionalContent = styled.div`
+const TweetAditionalContent = styled.div`
   padding: 10px;
 `
 
-const TwittAditionalTitle = styled.div`
+const TweetAditionalTitle = styled.div`
   font-weight: bold;
   color: white;
 `
 
-const TwittAditionalText = styled.div`
+const TweetAditionalText = styled.div`
   color: #6e767d;
 `
 
-const TwittAditionalLink = styled.div`
+const TweetAditionalLink = styled.div`
   display: flex;
   align-items: center;
   color: #6e767d;
 `
 
-const TwittFooter = styled.div`
+const TweetFooter = styled.div`
   color: #6e767d;
   margin-top: 6px;
   display: grid;
@@ -86,19 +86,19 @@ const TwittFooter = styled.div`
 `
 
 export {
-  TwittsStyle,
-  TwittProfilePhoto,
-  TwittHeader,
-  TwittHeaderUserInfoName,
-  TwittHeaderUserInfoPublic,
-  TwittHeaderUserInfoTimeAgo,
-  TwittInfo,
-  TwittInfoHashtag,
-  TwittAditional,
-  TwittPhoto,
-  TwittAditionalContent,
-  TwittAditionalTitle,
-  TwittAditionalText,
-  TwittAditionalLink,
-  TwittFooter,
+  TweetsStyle,
+  TweetProfilePhoto,
+  TweetHeader,
+  TweetHeaderUserInfoName,
+  TweetHeaderUserInfoPublic,
+  TweetHeaderUserInfoTimeAgo,
+  TweetInfo,
+  TweetInfoHashtag,
+  TweetAditional,
+  TweetPhoto,
+  TweetAditionalContent,
+  TweetAditionalTitle,
+  TweetAditionalText,
+  TweetAditionalLink,
+  TweetFooter,
 }

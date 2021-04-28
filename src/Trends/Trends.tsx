@@ -19,7 +19,7 @@ function Trends() {
       hashtag: '#KKTC',
       with: 'Kıbrıs',
       text: 'Gittiğiniz her yerde hayata özgürce dokunmanız için!',
-      twitts: '9,042',
+      Tweets: '9,042',
       promoted: 'xxx',
     },
     {
@@ -35,12 +35,12 @@ function Trends() {
     {
       title: 'Turkey',
       hashtag: '#LisanslıPsikologlar',
-      twitts: '9,042',
+      Tweets: '9,042',
       promoted: 'xxx',
     },
     {
       hashtag: '#figmaogren',
-      twitts: '999',
+      Tweets: '999',
       promoted: 'me',
     },
   ])
@@ -73,8 +73,8 @@ function Trends() {
                   <TrendPostTextWith href="#"> kibris</TrendPostTextWith>
                 </div>
               )}
-              {element.twitts && (
-                <div style={{ marginTop: '4px' }}>{element.twitts} Twetts</div>
+              {element.Tweets && (
+                <div style={{ marginTop: '4px' }}>{element.Tweets} Tweets</div>
               )}
               {element.promoted && (
                 <TrendPostPromoteTextStyle>

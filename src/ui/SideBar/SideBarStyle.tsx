@@ -10,7 +10,7 @@ const SideBarStyle = styled.div`
   width: 275px;
 `
 
-const SideBarTwitterIconStyle = styled.div`
+const SideBarTweeterIconStyle = styled.div`
   margin-left: 10px;
 `
 
@@ -99,7 +99,7 @@ export {
   SideBarUserInfoStyle,
   SideBarItemTextStyle,
   SideBarStyle,
-  SideBarTwitterIconStyle,
+  SideBarTweeterIconStyle,
   SideBarUserInfoPhotoStyle,
   SideBarUserInfoNames,
   SideBarUserInfoName,

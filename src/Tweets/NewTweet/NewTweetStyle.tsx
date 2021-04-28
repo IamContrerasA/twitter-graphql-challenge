@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const NewTwittStyle = styled.div`
+const NewTweetStyle = styled.div`
   display: flex;
   flex-direction: row;
   font-size: 19px;
@@ -8,13 +8,13 @@ const NewTwittStyle = styled.div`
   border-bottom: 10px solid #2f3336;
 `
 
-const NewTwittUserPhoto = styled.img`
+const NewTweetUserPhoto = styled.img`
   width: 49px;
   height: 49px;
   border-radius: 50%;
 `
 
-const NewTwittWrapper = styled.div`
+const NewTweetWrapper = styled.div`
   margin-left: 20px;
   width: 100%;
   height: 150px;
@@ -22,7 +22,7 @@ const NewTwittWrapper = styled.div`
   flex-direction: column;
   justify-content: space-around;
 `
-const NewTwittContent = styled.input`
+const NewTweetContent = styled.input`
   border: none;
   background: transparent;
   outline: none;
@@ -33,7 +33,7 @@ const NewTwittContent = styled.input`
     color: white;
   }
 `
-const NewTwittChooser = styled.div`
+const NewTweetChooser = styled.div`
   width: 160px;
   height: 30px;
   background: rgba(29, 161, 242, 0.3);
@@ -47,7 +47,7 @@ const NewTwittChooser = styled.div`
   padding-left: 10px;
 `
 
-const NewTwittFooter = styled.div`
+const NewTweetFooter = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -57,14 +57,14 @@ const NewTwittFooter = styled.div`
   padding-top: 15px;
 `
 
-const NewTwittIcons = styled.div`
+const NewTweetIcons = styled.div`
   width: 100px;
   display: flex;
   width: 200px;
   justify-content: space-around;
 `
 
-const NewTwittButton = styled.button`
+const NewTweetButton = styled.button`
   background: rgba(29, 161, 242, 0.3);
   border-radius: 34px;
   width: 77px;
@@ -82,12 +82,12 @@ const NewTwittButton = styled.button`
 `
 
 export {
-  NewTwittStyle,
-  NewTwittUserPhoto,
-  NewTwittWrapper,
-  NewTwittContent,
-  NewTwittChooser,
-  NewTwittFooter,
-  NewTwittIcons,
-  NewTwittButton,
+  NewTweetStyle,
+  NewTweetUserPhoto,
+  NewTweetWrapper,
+  NewTweetContent,
+  NewTweetChooser,
+  NewTweetFooter,
+  NewTweetIcons,
+  NewTweetButton,
 }

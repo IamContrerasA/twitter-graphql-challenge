@@ -1,13 +1,13 @@
 import * as React from 'react'
 import { Trends } from '../Trends'
-import { Twitts } from '../Twitts'
-import { NewTwitt } from '../Twitts/NewTwitt'
+import { Tweets } from '../Tweets'
+import { NewTweet } from '../Tweets/NewTweet'
 import { NavBar } from '../ui/NavBar'
 import { SideBar } from '../ui/SideBar'
 import {
   HomeStyle,
   HomeContentStyle,
-  HomeContentTwittsScroll,
+  HomeContentTweetsScroll,
 } from './HomeStyle'
 
 function Home() {
@@ -16,11 +16,11 @@ function Home() {
       <SideBar />
       <HomeContentStyle>
         <NavBar />
-        <NewTwitt />
-        <HomeContentTwittsScroll>
-          <Twitts />
-          <Twitts />
-        </HomeContentTwittsScroll>
+        <NewTweet />
+        <HomeContentTweetsScroll>
+          <Tweets />
+          <Tweets />
+        </HomeContentTweetsScroll>
       </HomeContentStyle>
       <Trends />
     </HomeStyle>

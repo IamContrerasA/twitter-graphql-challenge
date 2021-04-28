@@ -6,7 +6,7 @@ import {
   SideBarItemTextStyle,
   SideBarUserInfoStyle,
   SideBarStyle,
-  SideBarTwitterIconStyle,
+  SideBarTweeterIconStyle,
   SideBarUserInfoPhotoStyle,
   SideBarUserInfoNames,
   SideBarUserInfoName,
@@ -27,9 +27,9 @@ function SideBar() {
   return (
     <div>
       <SideBarStyle>
-        <SideBarTwitterIconStyle>
+        <SideBarTweeterIconStyle>
           <Icons tag="Twitter" width="27px" height="27px" />
-        </SideBarTwitterIconStyle>
+        </SideBarTweeterIconStyle>
 
         {icons.map((element, index) => {
           return (
