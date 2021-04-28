@@ -11,7 +11,9 @@ const TweetsContext = React.createContext<TweetsContextType | undefined>(
 const useTweetsContext = () => {
   const context = React.useContext(TweetsContext)
   if (context === undefined) {
-    throw new Error('You tried to use post context consumer outside a provider')
+    throw new Error(
+      'You tried to use tweets context consumer outside a provider',
+    )
   }
   return context
 }

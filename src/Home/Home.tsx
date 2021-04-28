@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Trends } from '../Trends'
+import { TrendsManagerContext } from '../Trends/TrendsContext'
 import { Tweets } from '../Tweets'
 import { NewTweet } from '../Tweets/NewTweet'
 import { TweetsManagerContext } from '../Tweets/TweetsContext'
@@ -26,7 +27,9 @@ function Home() {
             </HomeContentTweetsScroll>
           </TweetsManagerContext>
         </HomeContentStyle>
-        <Trends />
+        <TrendsManagerContext>
+          <Trends />
+        </TrendsManagerContext>
       </UserManagerContext>
     </HomeStyle>
   )
