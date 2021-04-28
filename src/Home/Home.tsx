@@ -2,6 +2,7 @@ import * as React from 'react'
 import { Trends } from '../Trends'
 import { Tweets } from '../Tweets'
 import { NewTweet } from '../Tweets/NewTweet'
+import { TweetsManagerContext } from '../Tweets/TweetsContext'
 import { NavBar } from '../ui/NavBar'
 import { SideBar } from '../ui/SideBar'
 import { UserManagerContext } from '../user/UserContext'
@@ -18,11 +19,12 @@ function Home() {
         <SideBar />
         <HomeContentStyle>
           <NavBar />
-          <NewTweet />
-          <HomeContentTweetsScroll>
-            <Tweets />
-            <Tweets />
-          </HomeContentTweetsScroll>
+          <TweetsManagerContext>
+            <NewTweet />
+            <HomeContentTweetsScroll>
+              <Tweets />
+            </HomeContentTweetsScroll>
+          </TweetsManagerContext>
         </HomeContentStyle>
         <Trends />
       </UserManagerContext>

@@ -81,7 +81,7 @@ const TweetFooter = styled.div`
   color: #6e767d;
   margin-top: 6px;
   display: grid;
-  grid-template-columns: 140px 24px 140px 24px 140px 40px;
+  grid-template-columns: 24px 140px 24px 140px 24px 140px 40px;
   align-items: center;
 `
 
