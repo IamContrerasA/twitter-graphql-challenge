@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Icons } from '../../Icons'
+import { useUserContext } from '../../user/UserContext'
 
 import {
   NewTweetStyle,
@@ -13,10 +14,11 @@ import {
 } from './NewTweetStyle'
 
 function NewTweet() {
+  const { user } = useUserContext()
   const icons = ['Image', 'Gif', 'Poll', 'Emoji', 'Schedule']
   return (
     <NewTweetStyle>
-      <NewTweetUserPhoto src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5FXwdmPbkmqKjK3vueMPQ0ZLGlayEU2CApg&usqp=CAU" />
+      <NewTweetUserPhoto src={user?.photo} />
       <NewTweetWrapper>
         <NewTweetContent placeholder="What's happening?" />
         <NewTweetChooser>Everyone can read</NewTweetChooser>

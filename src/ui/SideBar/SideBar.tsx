@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Icons } from '../../Icons'
+import { useUserContext } from '../../user/UserContext'
 import {
   SideBarButtonStyle,
   SideBarItemStyle,
@@ -15,6 +16,8 @@ import {
 } from './SideBarStyle'
 
 function SideBar() {
+  const { user } = useUserContext()
+
   const [icons] = React.useState([
     { name: 'Home', isSelected: true },
     { name: 'Explore', isSelected: false },
@@ -49,10 +52,10 @@ function SideBar() {
         <SideBarButtonStyle>Tweet</SideBarButtonStyle>
       </SideBarStyle>
       <SideBarUserInfoStyle>
-        <SideBarUserInfoPhotoStyle src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5FXwdmPbkmqKjK3vueMPQ0ZLGlayEU2CApg&usqp=CAU" />
+        <SideBarUserInfoPhotoStyle src={user?.photo} />
         <SideBarUserInfoNames>
-          <SideBarUserInfoName>Özer SUBAŞI 💪🏽</SideBarUserInfoName>
-          <SideBarUserInfoPublic>@ozerSubasi</SideBarUserInfoPublic>
+          <SideBarUserInfoName>{user?.name}</SideBarUserInfoName>
+          <SideBarUserInfoPublic>{user?.public}</SideBarUserInfoPublic>
         </SideBarUserInfoNames>
         <SideBarUserInfoArrowIcon>
           <Icons tag="Extend" width="20px" height="20px" />
