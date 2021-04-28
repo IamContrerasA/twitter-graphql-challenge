@@ -27,6 +27,12 @@ const SideBarItemStyle = styled.div<SideBarProps>`
   margin-top: 20px;
   padding: 10px;
   padding-right: 20px;
+  :hover {
+    background: rgba(29, 161, 242, 0.3);
+    width: min-content;
+    border-radius: 43px;
+    cursor: default;
+  }
 `
 
 const SideBarItemTextStyle = styled.div<SideBarProps>`

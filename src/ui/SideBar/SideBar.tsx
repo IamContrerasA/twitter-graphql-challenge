@@ -18,7 +18,7 @@ import {
 function SideBar() {
   const { user } = useUserContext()
 
-  const [icons] = React.useState([
+  const [icons, setIcons] = React.useState([
     { name: 'Home', isSelected: true },
     { name: 'Explore', isSelected: false },
     { name: 'Notifications', isSelected: false },
@@ -26,6 +26,14 @@ function SideBar() {
     { name: 'Profile', isSelected: false },
     { name: 'More', isSelected: false },
   ])
+
+  function handleIcons(element: { name: string; isSelected: boolean }) {
+    const iconsCopy = [...icons]
+    iconsCopy.map((e) =>
+      e === element ? (e.isSelected = true) : (e.isSelected = false),
+    )
+    setIcons(iconsCopy)
+  }
 
   return (
     <div>
@@ -36,7 +44,11 @@ function SideBar() {
 
         {icons.map((element, index) => {
           return (
-            <SideBarItemStyle key={index} isSelected={element.isSelected}>
+            <SideBarItemStyle
+              key={index}
+              isSelected={element.isSelected}
+              onClick={() => handleIcons(element)}
+            >
               <Icons
                 tag={element.isSelected ? `${element.name}Fill` : element.name}
                 width="27px"
