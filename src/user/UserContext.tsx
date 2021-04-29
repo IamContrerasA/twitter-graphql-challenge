@@ -24,11 +24,7 @@ const UserManagerContext = ({ children }: ChildrenProps) => {
 
   const GET_USER = gql`
     query currentUser {
-      user {
-        photo
-        name
-        public
-      }
+      user
     }
   `
   const { loading, data } = useQuery(GET_USER)

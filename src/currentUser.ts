@@ -1,13 +1,12 @@
 import { User } from './api'
 
 export const currentUser: Omit<User, 'id' | 'posts'> = {
-  firstName: 'firstName',
-  lastName: 'lastName',
-  username: 'username',
+  name: 'Özer SUBAŞI 👨‍🍳',
+  publicName: '@ozerSubasi',
   dob: new Date().toISOString(),
   picture: {
-    thumbnail: 'url',
-    medium: 'url',
-    large: 'url',
+    thumbnail: 'https://randomuser.me/api/portraits/lego/8.jpg',
+    medium: 'https://randomuser.me/api/portraits/med/lego/8.jpg',
+    large: 'https://randomuser.me/api/portraits/thumb/lego/8.jpg',
   },
 }

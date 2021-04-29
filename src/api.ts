@@ -18,9 +18,8 @@ export interface Post {
 
 export interface User {
   id: ID
-  username: string
-  firstName: string
-  lastName: string
+  name: string
+  publicName: string
   dob: string
   picture: ProfilePicture
   posts: ID[]

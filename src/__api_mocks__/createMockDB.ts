@@ -38,15 +38,14 @@ const userTable = new Map<string, Omit<User, 'posts'>>()
 const postsTable = new Map<string, Post>()
 
 export const createUser = (
-  user: Pick<User, 'firstName' | 'lastName' | 'dob' | 'picture'> & {
+  user: Pick<User, 'name' | 'publicName' | 'dob' | 'picture'> & {
     id?: string
   },
 ) => ({
   // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
   id: user.id || faker.random.uuid(),
-  username: `@${user.firstName}.${user.lastName}`.toLowerCase(),
-  firstName: user.firstName,
-  lastName: user.lastName,
+  name: user.name,
+  publicName: user.publicName,
   dob: user.dob,
   picture: user.picture,
 })

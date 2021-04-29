@@ -13,12 +13,7 @@ export const handlers = [
   tweet.query('currentUser', (req, res, ctx) => {
     return res(
       ctx.data({
-        user: {
-          photo:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5FXwdmPbkmqKjK3vueMPQ0ZLGlayEU2CApg&usqp=CAU',
-          name: 'Özer SUBAŞI 💪🏽',
-          public: '@ozerSubasi',
-        },
+        user: db.users.get(currentUserId),
       }),
     )
   }),

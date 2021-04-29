@@ -37,7 +37,7 @@ function NewTweet() {
   return (
     <form onSubmit={handleSubmit}>
       <NewTweetStyle>
-        <NewTweetUserPhoto src={user?.photo} />
+        <NewTweetUserPhoto src={user?.picture.thumbnail} />
         <NewTweetWrapper>
           <NewTweetContent
             aria-label="tweetContent"

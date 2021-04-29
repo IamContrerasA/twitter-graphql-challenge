@@ -64,10 +64,10 @@ function SideBar() {
         <SideBarButtonStyle>Tweet</SideBarButtonStyle>
       </SideBarStyle>
       <SideBarUserInfoStyle>
-        <SideBarUserInfoPhotoStyle src={user?.photo} />
+        <SideBarUserInfoPhotoStyle src={user?.picture.thumbnail} />
         <SideBarUserInfoNames>
           <SideBarUserInfoName>{user?.name}</SideBarUserInfoName>
-          <SideBarUserInfoPublic>{user?.public}</SideBarUserInfoPublic>
+          <SideBarUserInfoPublic>{user?.publicName}</SideBarUserInfoPublic>
         </SideBarUserInfoNames>
         <SideBarUserInfoArrowIcon>
           <Icons tag="Extend" width="20px" height="20px" />
