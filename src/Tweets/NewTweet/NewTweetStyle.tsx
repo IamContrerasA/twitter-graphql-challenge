@@ -1,9 +1,5 @@
 import styled from 'styled-components'
 
-type NewTweetProps = {
-  onChange: any
-}
-
 const NewTweetStyle = styled.div`
   display: flex;
   flex-direction: row;
@@ -21,22 +17,35 @@ const NewTweetUserPhoto = styled.img`
 const NewTweetWrapper = styled.div`
   margin-left: 20px;
   width: 100%;
-  height: 150px;
+  max-height: 400px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
 `
-const NewTweetContent = styled.textarea<NewTweetProps>`
+const NewTweetContent = styled.span`
   font-family: 'Roboto', sans-serif;
-  resize: none;
-  border: none;
-  background: transparent;
   outline: none;
   margin-left: 10px;
   font-size: 19px;
   color: white;
-  ::placeholder {
-    color: white;
+  display: block;
+  width: 100%;
+  overflow: scroll;
+  min-height: 40px;
+  line-height: 20px;
+  margin-top: 15px;
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2f3336;
+    width: 4px;
+    -webkit-border-radius: 1ex;
+  }
+  ::-webkit-scrollbar-corner {
+    background: none;
+  }
+  :empty::before {
+    content: "What's happening?";
   }
 `
 const NewTweetChooser = styled.div`
@@ -51,6 +60,8 @@ const NewTweetChooser = styled.div`
   justify-content: center;
   align-items: center;
   padding-left: 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 `
 
 const NewTweetFooter = styled.div`

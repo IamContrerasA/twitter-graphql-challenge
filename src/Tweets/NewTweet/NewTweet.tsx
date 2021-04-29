@@ -26,9 +26,13 @@ function NewTweet() {
     newTweet({ info: write })
   }
 
-  function handleWrite(event: React.ChangeEvent<HTMLTextAreaElement>) {
-    setWrite(event.target.value)
-  }
+  React.useEffect(() => {
+    const tweetContent = document.querySelector('[aria-label="tweetContent"]')
+    if (!tweetContent) return
+    tweetContent.addEventListener('input', function (e: any) {
+      setWrite(e.target.innerText)
+    })
+  }, [])
 
   return (
     <form onSubmit={handleSubmit}>
@@ -36,10 +40,13 @@ function NewTweet() {
         <NewTweetUserPhoto src={user?.photo} />
         <NewTweetWrapper>
           <NewTweetContent
+            aria-label="tweetContent"
             placeholder="What's happening?"
-            onChange={handleWrite}
+            contentEditable
           />
-          <NewTweetChooser>Everyone can read</NewTweetChooser>
+          <div>
+            <NewTweetChooser>Everyone can read</NewTweetChooser>
+          </div>
           <NewTweetFooter>
             <NewTweetIcons>
               {icons.map((element, index) => {
