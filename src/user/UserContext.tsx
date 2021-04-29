@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { gql, useQuery } from '@apollo/client'
 
 type UserContextValue = {
   user: any
@@ -21,25 +22,21 @@ export type ChildrenProps = {
 const UserManagerContext = ({ children }: ChildrenProps) => {
   const [currentUser, setCurrentUser] = React.useState<any>()
 
-  React.useEffect(() => {
-    const getCurrentUserData = async () => {
-      const user = new Promise((resolve) => {
-        setTimeout(() => {
-          // eslint-disable-next-line no-console
-          resolve(console.log('my user api'))
-        }, 500)
-      })
-      await user
-      const fakeUser = {
-        photo:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5FXwdmPbkmqKjK3vueMPQ0ZLGlayEU2CApg&usqp=CAU',
-        name: 'Özer SUBAŞI 💪🏽',
-        public: '@ozerSubasi',
+  const GET_USER = gql`
+    query currentUser {
+      user {
+        photo
+        name
+        public
       }
-      setCurrentUser(fakeUser)
     }
-    getCurrentUserData().catch(() => 'Error on get user data')
-  }, [])
+  `
+  const { loading, data } = useQuery(GET_USER)
+
+  React.useEffect(() => {
+    if (loading) return
+    setCurrentUser(data.user)
+  }, [data, loading])
 
   const contextValue: UserContextValue = {
     user: currentUser,
