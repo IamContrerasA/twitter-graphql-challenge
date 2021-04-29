@@ -19,8 +19,7 @@ export const handlers = [
   }),
 
   tweet.query('tweets', (req, res, ctx) => {
-    // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
-    const page = Number(req.url.searchParams.get('page')) || 1
+    const { page } = req.variables
 
     const pageCount = 10
     const tweets = [...db.tweets.values()]
@@ -33,7 +32,6 @@ export const handlers = [
       tweets: sortedByTweets,
       pageCount: Math.ceil(tweets.length / pageCount),
     }
-
     return res(
       ctx.status(200),
       ctx.data({

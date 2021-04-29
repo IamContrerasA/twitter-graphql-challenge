@@ -28,11 +28,15 @@ const TweetsManagerContext = ({ children }: ChildrenProps) => {
   const [tweetsData, setTweetsData] = React.useState<any[]>([])
 
   const GET_TWEETS = gql`
-    query tweets {
-      response
+    query tweets($page: Number!) {
+      response(page: $page)
     }
   `
-  const { loading, data } = useQuery(GET_TWEETS)
+  const { loading, data } = useQuery(GET_TWEETS, {
+    variables: {
+      page: 1,
+    },
+  })
 
   React.useEffect(() => {
     if (loading) return
