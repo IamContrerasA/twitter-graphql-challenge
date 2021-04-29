@@ -6,13 +6,18 @@ export interface ProfilePicture {
   large: string
 }
 
-export interface Post {
+export interface Tweet {
   id: ID
-  authorId: ID
+  authorId: User
   picture: string
   text: string
+  url?: string
   likeCount: number
+  replayCount: number
+  retweetCount: number
   hasLiked: boolean
+  hasReplay: boolean
+  hasRetweet: boolean
   createdAt: string
 }
 
@@ -22,5 +27,5 @@ export interface User {
   publicName: string
   dob: string
   picture: ProfilePicture
-  posts: ID[]
+  tweets?: ID[]
 }

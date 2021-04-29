@@ -41,11 +41,11 @@ function Tweets() {
       {tweetsData.map((tweet: any, index: any) => {
         return (
           <TweetsStyle key={index}>
-            <TweetProfilePhoto src={tweet.photo} />
+            <TweetProfilePhoto src={tweet.authorId.picture.thumbnail} />
             <div>
               <TweetHeader>
                 <TweetHeaderUserInfoName>
-                  {tweet.authorName}
+                  {tweet.authorId.name}
                 </TweetHeaderUserInfoName>
                 <Icons
                   tag="Confirmed"
@@ -54,22 +54,22 @@ function Tweets() {
                   fill="#1da1f2"
                 />
                 <TweetHeaderUserInfoPublic>
-                  {tweet.authorPublic}
+                  {tweet.authorId.publicName}
                 </TweetHeaderUserInfoPublic>
                 <TweetHeaderUserInfoTimeAgo>
-                  . {tweet.timeAgo}
+                  . {tweet.createdAt}
                 </TweetHeaderUserInfoTimeAgo>
               </TweetHeader>
               <TweetInfo>
                 {
                   // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-                  tweet.info?.split(`\n`).map((e: string, i: number) => {
+                  tweet.text?.split(`\n`).map((e: string, i: number) => {
                     return <div key={i}>{handleHashtag(e)}</div>
                   })
                 }
               </TweetInfo>
               <TweetAditional>
-                <TweetPhoto src={tweet.aditionalPhoto} />
+                <TweetPhoto src={tweet.aditionalPhoto || tweet.picture} />
                 {tweet.aditionalTitle ||
                 tweet.aditionalText ||
                 tweet.aditionalLink ? (
@@ -94,16 +94,16 @@ function Tweets() {
               </TweetAditional>
               <TweetFooter>
                 <Icons tag="Reply" width="19px" height="19px" fill="#6e767d" />
-                {tweet.countReplay}
+                {tweet.replayCount}
                 <Icons
                   tag="Retweet"
                   width="19px"
                   height="19px"
                   fill="#6e767d"
                 />
-                {tweet.countRetweet}
+                {tweet.retweetCount}
                 <Icons tag="Like" width="19px" height="19px" fill="#6e767d" />
-                {tweet.countLike}
+                {tweet.likeCount}
                 <Icons tag="Share" width="19px" height="19px" fill="#6e767d" />
               </TweetFooter>
             </div>

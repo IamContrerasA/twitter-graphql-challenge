@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { gql, useQuery } from '@apollo/client'
 
 type TweetsContextType = {
   tweetsData: any[]
@@ -26,63 +27,71 @@ type ChildrenProps = {
 const TweetsManagerContext = ({ children }: ChildrenProps) => {
   const [tweetsData, setTweetsData] = React.useState<any[]>([])
 
-  React.useEffect(() => {
-    const getCurrentUserData = async () => {
-      const tweets = new Promise((resolve) => {
-        setTimeout(() => {
-          // eslint-disable-next-line no-console
-          resolve(console.log('my tweets api'))
-        }, 500)
-      })
-      await tweets
-      const fakeTweets = [
-        {
-          photo:
-            'https://pbs.twimg.com/profile_images/1280897745906270214/_lUXucxE.png',
-          authorName: 'Upwork',
-          authorPublic: '@Name',
-          timeAgo: '6sn',
-          info: `How alternative staffing solutions help organizations improve their #TalentSourcing :
-            👏Ability to scale business as needed
-            👏Access to qualified #RemoteWorkers globally
-            👏Improved productivity with faster hires and streamlined processes`,
-          aditionalPhoto:
-            'https://assets-global.website-files.com/5ec7dad2e6f6295a9e2a23dd/5f3bc4c67b9de11ad00e1395_Onboarding%20Talent.png',
-          aditionalTitle:
-            'How Alternative Staffing Solutions Stronger Recruitment | Upwork',
-          aditionalText: `Talent sourcing is important for enterprise growth, and
-          alternative staffing solutions like Upwork enable hiring managers
-          to focus on the...`,
-          aditionalLink: 'upwork.com',
-          countReplay: 0,
-          countRetweet: 998,
-          countLike: 999,
-        },
-        {
-          photo:
-            'https://assets.materialup.com/uploads/347c48be-3ed3-4e80-87a0-3353405f0239/0x0ss-85.jpg',
-          authorName: 'Nba',
-          authorPublic: '@Nba',
-          timeAgo: '7h',
-          info: `#3 in West LAC vs. #2 in West PHX #watch
-            ▪️ AD, #Lakers take on Beal, surging Wizards
-            ▪️ Zion/Jokic, Dame/Ja, and more on NBA LP
-            
-            📺: ESPN
-            📱💻: NBA League Pass #subscribe!
-            ➡️: https://app.link.nba.com/e/leaguepass
-          `,
-          aditionalPhoto:
-            'https://pbs.twimg.com/media/E0CRN-EXEAAgsHV?format=jpg&name=medium',
-          countReplay: 35,
-          countRetweet: 114,
-          countLike: 797,
-        },
-      ]
-      setTweetsData(fakeTweets)
+  const GET_TWEETS = gql`
+    query tweets {
+      response
     }
-    getCurrentUserData().catch(() => 'Error on get user data')
-  }, [])
+  `
+  const { loading, data } = useQuery(GET_TWEETS)
+
+  React.useEffect(() => {
+    if (loading) return
+    const fakeTweets = [
+      {
+        authorId: {
+          picture: {
+            thumbnail:
+              'https://pbs.twimg.com/profile_images/1280897745906270214/_lUXucxE.png',
+          },
+          name: 'Upwork',
+          publicName: '@Name',
+        },
+
+        text: `How alternative staffing solutions help organizations improve their #TalentSourcing :
+          👏Ability to scale business as needed
+          👏Access to qualified #RemoteWorkers globally
+          👏Improved productivity with faster hires and streamlined processes`,
+        aditionalPhoto:
+          'https://assets-global.website-files.com/5ec7dad2e6f6295a9e2a23dd/5f3bc4c67b9de11ad00e1395_Onboarding%20Talent.png',
+        aditionalTitle:
+          'How Alternative Staffing Solutions Stronger Recruitment | Upwork',
+        aditionalText: `Talent sourcing is important for enterprise growth, and
+        alternative staffing solutions like Upwork enable hiring managers
+        to focus on the...`,
+        aditionalLink: 'upwork.com',
+        replayCount: 0,
+        retweetCount: 998,
+        likeCount: 999,
+        createdAt: '6sn',
+      },
+      {
+        authorId: {
+          picture: {
+            thumbnail:
+              'https://assets.materialup.com/uploads/347c48be-3ed3-4e80-87a0-3353405f0239/0x0ss-85.jpg',
+          },
+          name: 'Nba',
+          publicName: '@Nba',
+        },
+
+        text: `#3 in West LAC vs. #2 in West PHX #watch
+          ▪️ AD, #Lakers take on Beal, surging Wizards
+          ▪️ Zion/Jokic, Dame/Ja, and more on NBA LP
+          
+          📺: ESPN
+          📱💻: NBA League Pass #subscribe!
+          ➡️: https://app.link.nba.com/e/leaguepass
+        `,
+        aditionalPhoto:
+          'https://pbs.twimg.com/media/E0CRN-EXEAAgsHV?format=jpg&name=medium',
+        replayCount: 35,
+        retweetCount: 114,
+        likeCount: 797,
+        createdAt: '7h',
+      },
+    ]
+    setTweetsData([...fakeTweets, ...data.response.tweets])
+  }, [data, loading])
 
   async function newTweet(args: any) {
     const response = new Promise((resolve) => {

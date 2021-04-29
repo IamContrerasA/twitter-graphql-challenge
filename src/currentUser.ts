@@ -1,6 +1,6 @@
 import { User } from './api'
 
-export const currentUser: Omit<User, 'id' | 'posts'> = {
+export const currentUser: Omit<User, 'id' | 'tweets'> = {
   name: 'Özer SUBAŞI 👨‍🍳',
   publicName: '@ozerSubasi',
   dob: new Date().toISOString(),

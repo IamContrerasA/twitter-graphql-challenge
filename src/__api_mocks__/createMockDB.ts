@@ -1,7 +1,7 @@
 import fakerjs from 'faker'
-import { User, Post } from '../api'
+import { User, Tweet } from '../api'
 import { currentUser } from '../currentUser'
-import unsplashImages from './postImages.json'
+import unsplashImages from './tweetImages.json'
 import users from './users.json'
 
 interface UpdatedFaker {
@@ -34,8 +34,8 @@ const getUniqueRandomImage = () => {
   return randomImage
 }
 
-const userTable = new Map<string, Omit<User, 'posts'>>()
-const postsTable = new Map<string, Post>()
+const userTable = new Map<string, Omit<User, 'tweets'>>()
+const tweetsTable = new Map<string, Tweet>()
 
 export const createUser = (
   user: Pick<User, 'name' | 'publicName' | 'dob' | 'picture'> & {
@@ -50,53 +50,63 @@ export const createUser = (
   picture: user.picture,
 })
 
-export const createPost = (text: string, picture: string) => {
-  const post = {
+export const createTweet = (text: string, picture: string, url?: string) => {
+  const tweet = {
     id: faker.random.uuid(),
-    authorId: currentUserId,
+    authorId: { ...currentUser, id: currentUserId, tweets: [] },
+    url,
     picture,
     text,
     likeCount: 0,
+    replayCount: 0,
+    retweetCount: 0,
     hasLiked: false,
+    hasReplay: false,
+    hasRetweet: false,
     createdAt: new Date().toISOString(),
   }
 
-  postsTable.set(post.id, post)
+  tweetsTable.set(tweet.id, tweet)
 
-  return post
+  return tweet
 }
 
 export const createMockDB = () => {
-  const maxPostsCount = unsplashImages.length
-  const maxPostsCountPerUser = maxPostsCount / users.length
+  const maxTweetsCount = unsplashImages.length
+  const maxTweetsCountPerUser = maxTweetsCount / users.length
 
   users.forEach((userData) => {
     const user = createUser(userData)
 
-    let postCountForUser = faker.random.number({
+    let tweetCountForUser = faker.random.number({
       min: 2,
-      max: maxPostsCountPerUser + 10,
+      max: maxTweetsCountPerUser + 10,
     })
-    const availablePostsCount = maxPostsCount - postsTable.size
-    if (postsTable.size !== 0 && availablePostsCount < postCountForUser) {
-      postCountForUser = faker.random.number({
+    const availableTweetsCount = maxTweetsCount - tweetsTable.size
+    if (tweetsTable.size !== 0 && availableTweetsCount < tweetCountForUser) {
+      tweetCountForUser = faker.random.number({
         min: 0,
-        max: availablePostsCount,
+        max: availableTweetsCount,
       })
     }
 
-    for (let i = 0; i < postCountForUser; i++) {
-      const post = {
+    for (let i = 0; i < tweetCountForUser; i++) {
+      const tweet = {
         id: faker.random.uuid(),
-        authorId: user.id,
+        authorId: user,
         picture: getUniqueRandomImage(),
         text: faker.lorem.text(),
+        url: '',
         likeCount: faker.random.number({ min: 0, max: 10_000 }),
+        replayCount: faker.random.number({ min: 0, max: 10_000 }),
+        retweetCount: faker.random.number({ min: 0, max: 10_000 }),
         hasLiked: false,
+        hasReplay: false,
+        hasRetweet: false,
         createdAt: faker.date.past().toISOString(),
       }
 
-      postsTable.set(post.id, post)
+      tweetsTable.set(tweet.id, tweet)
     }
     userTable.set(user.id, user)
   })
@@ -107,7 +117,7 @@ export const createMockDB = () => {
   )
 
   const db = {
-    posts: postsTable,
+    tweets: tweetsTable,
     users: userTable,
   }
 
