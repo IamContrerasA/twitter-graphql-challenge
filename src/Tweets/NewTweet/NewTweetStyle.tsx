@@ -47,6 +47,25 @@ const NewTweetContent = styled.span`
     content: "What's happening?";
   }
 `
+
+const NewTweetPhoto = styled.img`
+  width: 100px;
+  height: 100px;
+`
+const NewTweetPhotoClose = styled.button`
+  position: relative;
+  background-color: transparent;
+  color: #2f3336;
+  border: none;
+  z-index: 1;
+  left: -21px;
+  bottom: 86px;
+  :hover {
+    background-color: #2f3336;
+    color: black;
+  }
+`
+
 const NewTweetChooser = styled.div`
   width: 160px;
   height: 30px;
@@ -102,6 +121,8 @@ export {
   NewTweetUserPhoto,
   NewTweetWrapper,
   NewTweetContent,
+  NewTweetPhoto,
+  NewTweetPhotoClose,
   NewTweetChooser,
   NewTweetFooter,
   NewTweetIcons,
