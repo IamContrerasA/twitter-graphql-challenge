@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Icons } from '../Icons'
 import { useUserContext } from '../user/UserContext'
+import { TimeAgo } from './TimeAgo'
 import { useTweetsContext } from './TweetsContext'
 
 import {
@@ -11,7 +12,6 @@ import {
   TweetHeaderUserInfo,
   TweetHeaderUserInfoName,
   TweetHeaderUserInfoPublic,
-  TweetHeaderUserInfoTimeAgo,
   TweetHeaderOptions,
   TweetHeaderDeleteOptionButton,
   TweetInfo,
@@ -112,9 +112,7 @@ function Tweets() {
                   <TweetHeaderUserInfoPublic>
                     {tweet.authorId.publicName}
                   </TweetHeaderUserInfoPublic>
-                  <TweetHeaderUserInfoTimeAgo>
-                    . {tweet.createdAt}
-                  </TweetHeaderUserInfoTimeAgo>
+                  <TimeAgo date={tweet.createdAt} />
                 </TweetHeaderUserInfo>
                 {tweet.authorId.id === user.id ? (
                   <TweetHeaderOptions>
