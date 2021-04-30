@@ -68,30 +68,32 @@ function Tweets() {
                   })
                 }
               </TweetInfo>
-              <TweetAditional>
-                <TweetPhoto src={tweet.aditionalPhoto || tweet.picture} />
-                {tweet.aditionalTitle ||
-                tweet.aditionalText ||
-                tweet.aditionalLink ? (
-                  <TweetAditionalContent>
-                    <TweetAditionalTitle>
-                      {tweet.aditionalTitle}
-                    </TweetAditionalTitle>
-                    <TweetAditionalText>
-                      {tweet.aditionalText}
-                    </TweetAditionalText>
-                    <TweetAditionalLink>
-                      <Icons
-                        tag="TweetLinked"
-                        width="19px"
-                        height="19px"
-                        fill="#6e767d"
-                      />
-                      {tweet.aditionalLink}
-                    </TweetAditionalLink>
-                  </TweetAditionalContent>
-                ) : null}
-              </TweetAditional>
+              {tweet.aditionalPhoto || tweet.picture ? (
+                <TweetAditional>
+                  <TweetPhoto src={tweet.aditionalPhoto || tweet.picture} />
+                  {tweet.aditionalTitle ||
+                  tweet.aditionalText ||
+                  tweet.aditionalLink ? (
+                    <TweetAditionalContent>
+                      <TweetAditionalTitle>
+                        {tweet.aditionalTitle}
+                      </TweetAditionalTitle>
+                      <TweetAditionalText>
+                        {tweet.aditionalText}
+                      </TweetAditionalText>
+                      <TweetAditionalLink>
+                        <Icons
+                          tag="TweetLinked"
+                          width="19px"
+                          height="19px"
+                          fill="#6e767d"
+                        />
+                        {tweet.aditionalLink}
+                      </TweetAditionalLink>
+                    </TweetAditionalContent>
+                  ) : null}
+                </TweetAditional>
+              ) : null}
               <TweetFooter>
                 <Icons tag="Reply" width="19px" height="19px" fill="#6e767d" />
                 {tweet.replayCount}

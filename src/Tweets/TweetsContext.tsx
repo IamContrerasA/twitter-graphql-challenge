@@ -105,7 +105,10 @@ const TweetsManagerContext = ({ children }: ChildrenProps) => {
       }, 500)
     })
     await response
-    setTweetsData([args, ...tweetsData])
+    setTweetsData([
+      { ...args, likeCount: 0, replayCount: 0, retweetCount: 0 },
+      ...tweetsData,
+    ])
   }
 
   const contextValue: any = {
