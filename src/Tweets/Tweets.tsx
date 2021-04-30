@@ -35,7 +35,7 @@ function Tweets() {
     deleteTweet,
   } = useTweetsContext()
   const [page, setPage] = React.useState(2)
-  const [deleteButton, showDeleteButton] = React.useState({
+  const [deleteButton, setDeleteButton] = React.useState({
     index: -1,
     isShown: false,
   })
@@ -71,6 +71,26 @@ function Tweets() {
     )
   }
 
+  function useOutsideChangeDeleteButton(ref: any) {
+    React.useEffect(() => {
+      function handleClickOutside(event: any) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+        if (ref.current && !ref.current.contains(event.target)) {
+          setDeleteButton({
+            index: -1,
+            isShown: false,
+          })
+        }
+      }
+      document.addEventListener('mousedown', handleClickOutside)
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside)
+      }
+    }, [ref])
+  }
+  const wrapperRef = React.useRef(null)
+  useOutsideChangeDeleteButton(wrapperRef)
+
   return (
     <TweetScroll onScroll={scrollEvent}>
       {tweetsData.map((tweet: any, index: any) => {
@@ -96,10 +116,11 @@ function Tweets() {
                     . {tweet.createdAt}
                   </TweetHeaderUserInfoTimeAgo>
                 </TweetHeaderUserInfo>
-                {tweet.authorId.id !== user.id ? (
+                {tweet.authorId.id === user.id ? (
                   <TweetHeaderOptions>
                     {deleteButton.isShown && deleteButton.index === index && (
                       <TweetHeaderDeleteOptionButton
+                        ref={wrapperRef}
                         onClick={() =>
                           deleteTweet({ tweetId: tweet.id }, index)
                         }
@@ -112,7 +133,7 @@ function Tweets() {
                       width="15px"
                       height="15px"
                       onClick={() =>
-                        showDeleteButton({
+                        setDeleteButton({
                           index,
                           isShown: !deleteButton.isShown,
                         })
