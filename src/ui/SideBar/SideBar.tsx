@@ -7,7 +7,8 @@ import {
   SideBarItemTextStyle,
   SideBarUserInfoStyle,
   SideBarStyle,
-  SideBarTweeterIconStyle,
+  SideBarNotificationNumber,
+  SideBarTwitterIconStyle,
   SideBarUserInfoPhotoStyle,
   SideBarUserInfoNames,
   SideBarUserInfoName,
@@ -38,9 +39,9 @@ function SideBar() {
   return (
     <div>
       <SideBarStyle>
-        <SideBarTweeterIconStyle>
+        <SideBarTwitterIconStyle>
           <Icons tag="Twitter" width="27px" height="27px" />
-        </SideBarTweeterIconStyle>
+        </SideBarTwitterIconStyle>
 
         {icons.map((element, index) => {
           return (
@@ -58,6 +59,11 @@ function SideBar() {
               <SideBarItemTextStyle isSelected={element.isSelected}>
                 {element.name}
               </SideBarItemTextStyle>
+              {element.name === 'Notifications' ? (
+                <SideBarNotificationNumber isSelected={element.isSelected}>
+                  1
+                </SideBarNotificationNumber>
+              ) : null}
             </SideBarItemStyle>
           )
         })}

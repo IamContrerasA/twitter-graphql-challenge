@@ -10,8 +10,20 @@ const SideBarStyle = styled.div`
   width: 275px;
 `
 
-const SideBarTweeterIconStyle = styled.div`
+const SideBarTwitterIconStyle = styled.div`
   margin-left: 10px;
+`
+
+const SideBarNotificationNumber = styled.div<SideBarProps>`
+  position: relative;
+  z-index: 2;
+  background: ${(props) => (props.isSelected ? 'black' : '#1da1f2')};
+  border-radius: 50%;
+  width: 14px;
+  color: ${(props) => (props.isSelected ? '#1DA1F2' : 'white')};
+  padding-left: 5px;
+  top: -10px;
+  left: -145px;
 `
 
 const SideBarItemStyle = styled.div<SideBarProps>`
@@ -105,7 +117,8 @@ export {
   SideBarUserInfoStyle,
   SideBarItemTextStyle,
   SideBarStyle,
-  SideBarTweeterIconStyle,
+  SideBarTwitterIconStyle,
+  SideBarNotificationNumber,
   SideBarUserInfoPhotoStyle,
   SideBarUserInfoNames,
   SideBarUserInfoName,
