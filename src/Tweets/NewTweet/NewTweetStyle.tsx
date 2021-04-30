@@ -31,7 +31,6 @@ const NewTweetContent = styled.span`
   width: 100%;
   overflow: scroll;
   min-height: 40px;
-  line-height: 20px;
   margin-top: 15px;
   ::-webkit-scrollbar {
     width: 6px;

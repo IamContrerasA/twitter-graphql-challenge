@@ -39,4 +39,10 @@ export const handlers = [
       }),
     )
   }),
+
+  tweet.mutation('tweet', (req, res, ctx) => {
+    const { text, picture } = req.variables
+    const newTweet = createTweet(text, picture)
+    return res(ctx.status(200), ctx.data({ newTweet }))
+  }),
 ]

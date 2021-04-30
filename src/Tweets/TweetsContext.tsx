@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { gql, useQuery } from '@apollo/client'
+import { gql, useQuery, useMutation } from '@apollo/client'
 
 type TweetsContextType = {
   tweetsData: any[]
@@ -33,12 +33,19 @@ const TweetsManagerContext = ({ children }: ChildrenProps) => {
       response(page: $page)
     }
   `
-  const { loading, data, fetchMore } = useQuery(GET_TWEETS, {
-    variables: {
-      page: 1,
-    },
-  })
 
+  const NEW_TWEET = gql`
+    mutation tweet($text: String, $picture: String) {
+      newTweet(text: $text, picture: $picture)
+    }
+  `
+
+  const { loading, data, fetchMore } = useQuery(GET_TWEETS, {
+    variables: { page: 1 },
+  })
+  const [newTweetMutation] = useMutation(NEW_TWEET)
+
+  //first render, load the first 10 tweets with 2 fakes
   React.useEffect(() => {
     if (loading) return
     const fakeTweets = [
@@ -99,17 +106,10 @@ const TweetsManagerContext = ({ children }: ChildrenProps) => {
   }, [data, loading])
 
   async function newTweet(args: any) {
-    const response = new Promise((resolve) => {
-      setTimeout(() => {
-        // eslint-disable-next-line no-console
-        resolve(console.log('my newTweet api'))
-      }, 500)
+    const response = await newTweetMutation({
+      variables: args,
     })
-    await response
-    setTweetsData([
-      { ...args, likeCount: 0, replayCount: 0, retweetCount: 0 },
-      ...tweetsData,
-    ])
+    setTweetsData([response.data.newTweet, ...tweetsData])
   }
 
   const contextValue: any = {

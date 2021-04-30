@@ -23,7 +23,7 @@ function NewTweet() {
   function handleSubmit(event: { preventDefault: () => void }) {
     event.preventDefault()
     if (!write) return
-    newTweet({ text: write, authorId: user })
+    newTweet({ text: write })
   }
 
   React.useEffect(() => {
