@@ -58,17 +58,49 @@ function Tweets() {
     }
   }
 
+  type wordsWithIndex = [
+    {
+      word: string
+      index: number
+    },
+  ]
   function handleHashtag(e: string) {
-    const regex = /#\w*/i
-    const regexResult = regex.exec(e)
-    if (!regexResult) return e
-    return (
+    const regex = /#(\w+)/g
+    let regexResult = regex.exec(e)
+    if (regexResult == null) return e
+
+    const wordsWithIndex: wordsWithIndex = []
+    while (regexResult != null) {
+      wordsWithIndex.push({ word: regexResult[1], index: regexResult.index })
+      regexResult = regex.exec(e)
+    }
+
+    const newSentenceWithHashtag = (
       <div>
-        {e.substring(0, regexResult.index)}
-        <TweetInfoHashtag>{regexResult[0]}</TweetInfoHashtag>
-        {e.substring(regexResult.index + regexResult[0].length, e.length)}
+        {wordsWithIndex.map((element, index) => {
+          return (
+            <span key={index}>
+              {e.substring(
+                index === 0
+                  ? 0
+                  : wordsWithIndex[index - 1].index +
+                      wordsWithIndex[index - 1].word.length +
+                      1,
+                element.index,
+              )}
+              <TweetInfoHashtag>{`#${element.word}`}</TweetInfoHashtag>
+            </span>
+          )
+        })}
+        {e.substring(
+          wordsWithIndex[wordsWithIndex.length - 1].index +
+            1 +
+            wordsWithIndex[wordsWithIndex.length - 1].word.length,
+          e.length,
+        )}
       </div>
     )
+    return newSentenceWithHashtag
   }
 
   function useOutsideChangeDeleteButton(ref: any) {
