@@ -45,4 +45,42 @@ export const handlers = [
     const newTweet = createTweet(text, picture)
     return res(ctx.status(200), ctx.data({ newTweet }))
   }),
+
+  tweet.mutation('like', (req, res, ctx) => {
+    const { tweetId } = req.variables
+    const tweetData = db.tweets.get(tweetId)
+
+    if (!tweetData) {
+      return res(ctx.status(404))
+    }
+
+    const updatedTweet = {
+      ...tweetData,
+      hasLiked: true,
+      likeCount: tweetData.likeCount + 1,
+    }
+
+    db.tweets.set(tweetData.id, updatedTweet)
+
+    return res(ctx.status(200), ctx.data({ sucess: true, updatedTweet }))
+  }),
+
+  tweet.mutation('unlike', (req, res, ctx) => {
+    const { tweetId } = req.variables
+    const tweetData = db.tweets.get(tweetId)
+
+    if (!tweetData) {
+      return res(ctx.status(404))
+    }
+
+    const updatedTweet = {
+      ...tweetData,
+      hasLiked: false,
+      likeCount: Math.max(tweetData.likeCount - 1, 0),
+    }
+
+    db.tweets.set(tweetData.id, updatedTweet)
+
+    return res(ctx.status(200), ctx.data({ sucess: true, updatedTweet }))
+  }),
 ]

@@ -22,7 +22,7 @@ import {
 } from './TweetsStyle'
 
 function Tweets() {
-  const { tweetsData, fetchMore } = useTweetsContext()
+  const { tweetsData, fetchMore, likeTweet, unlikeTweet } = useTweetsContext()
   const [page, setPage] = React.useState(2)
 
   function scrollEvent(e: React.UIEvent<HTMLElement>) {
@@ -124,7 +124,18 @@ function Tweets() {
                   fill="#6e767d"
                 />
                 {tweet.retweetCount}
-                <Icons tag="Like" width="19px" height="19px" fill="#6e767d" />
+
+                <Icons
+                  tag="Like"
+                  width="19px"
+                  height="19px"
+                  fill={tweet.hasLiked ? 'red' : '#6e767d'}
+                  onClick={() =>
+                    tweet.hasLiked
+                      ? unlikeTweet({ tweetId: tweet.id }, index)
+                      : likeTweet({ tweetId: tweet.id }, index)
+                  }
+                />
                 {tweet.likeCount}
                 <Icons tag="Share" width="19px" height="19px" fill="#6e767d" />
               </TweetFooter>

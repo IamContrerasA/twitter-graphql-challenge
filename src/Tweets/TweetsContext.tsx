@@ -3,8 +3,10 @@ import { gql, useQuery, useMutation } from '@apollo/client'
 
 type TweetsContextType = {
   tweetsData: any[]
-  newTweet: (arg: any) => void
   fetchMore: (args: { variables: { page: number } }) => void
+  newTweet: (arg: any) => void
+  likeTweet: (arg: any, index: number) => void
+  unlikeTweet: (arg: any, index: number) => void
 }
 
 const TweetsContext = React.createContext<TweetsContextType | undefined>(
@@ -40,16 +42,31 @@ const TweetsManagerContext = ({ children }: ChildrenProps) => {
     }
   `
 
+  const LIKE_TWEET = gql`
+    mutation like($tweetId: String) {
+      sucess(text: $tweetId)
+    }
+  `
+
+  const UNLIKE_TWEET = gql`
+    mutation unlike($tweetId: String) {
+      sucess(text: $tweetId)
+    }
+  `
+
   const { loading, data, fetchMore } = useQuery(GET_TWEETS, {
     variables: { page: 1 },
   })
   const [newTweetMutation] = useMutation(NEW_TWEET)
+  const [likeTweetMutation] = useMutation(LIKE_TWEET)
+  const [unlikeTweetMutation] = useMutation(UNLIKE_TWEET)
 
   //first render, load the first 10 tweets with 2 fakes
   React.useEffect(() => {
     if (loading) return
     const fakeTweets = [
       {
+        id: 'fakeId1',
         authorId: {
           picture: {
             thumbnail:
@@ -77,6 +94,7 @@ const TweetsManagerContext = ({ children }: ChildrenProps) => {
         createdAt: '6sn',
       },
       {
+        id: 'fakeId2',
         authorId: {
           picture: {
             thumbnail:
@@ -112,10 +130,36 @@ const TweetsManagerContext = ({ children }: ChildrenProps) => {
     setTweetsData([response.data.newTweet, ...tweetsData])
   }
 
+  async function likeTweet(args: any, index: number) {
+    const response = await likeTweetMutation({
+      variables: args,
+    })
+    if (response.data.sucess)
+      setTweetsData([
+        ...tweetsData.slice(0, index),
+        response.data.updatedTweet,
+        ...tweetsData.slice(index + 1),
+      ])
+  }
+
+  async function unlikeTweet(args: any, index: number) {
+    const response = await unlikeTweetMutation({
+      variables: args,
+    })
+    if (response.data.sucess)
+      setTweetsData([
+        ...tweetsData.slice(0, index),
+        response.data.updatedTweet,
+        ...tweetsData.slice(index + 1),
+      ])
+  }
+
   const contextValue: any = {
     tweetsData,
-    newTweet,
     fetchMore,
+    newTweet,
+    likeTweet,
+    unlikeTweet,
   }
 
   return (

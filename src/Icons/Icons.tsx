@@ -33,6 +33,7 @@ type IconsProps = {
   width?: string
   height?: string
   fill?: string
+  onClick?: () => void
 }
 
 function Icons({
@@ -40,6 +41,7 @@ function Icons({
   width = '24px',
   height = '24px',
   fill = 'white',
+  onClick,
 }: IconsProps) {
   const components: any = {
     Twitter: TwitterIcon,
@@ -74,7 +76,9 @@ function Icons({
   }
   const IconName: any = components[tag]
 
-  return <IconName width={width} height={height} fill={fill} />
+  return (
+    <IconName width={width} height={height} fill={fill} onClick={onClick} />
+  )
 }
 
 export { Icons }
