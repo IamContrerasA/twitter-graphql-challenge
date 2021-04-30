@@ -15,8 +15,4 @@ const HomeContentStyle = styled.div`
   border-top: none;
 `
 
-const HomeContentTweetsScroll = styled.div`
-  max-height: 630px;
-  overflow: auto;
-`
-export { HomeStyle, HomeContentStyle, HomeContentTweetsScroll }
+export { HomeStyle, HomeContentStyle }

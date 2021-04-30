@@ -1,5 +1,10 @@
 import styled from 'styled-components'
 
+const TweetScroll = styled.div`
+  max-height: 630px;
+  overflow: auto;
+`
+
 const TweetsStyle = styled.div`
   display: flex;
   flex-direction: row;
@@ -86,6 +91,7 @@ const TweetFooter = styled.div`
 `
 
 export {
+  TweetScroll,
   TweetsStyle,
   TweetProfilePhoto,
   TweetHeader,

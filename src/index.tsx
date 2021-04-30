@@ -2,8 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
-import { ApolloClient, InMemoryCache } from '@apollo/client'
+import { ApolloClient } from '@apollo/client'
 import { ApolloProvider } from '@apollo/client'
+import { cache } from './cache'
 
 if (process.env.NODE_ENV === 'development') {
   const {
@@ -15,9 +16,8 @@ if (process.env.NODE_ENV === 'development') {
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-call
 const client = new ApolloClient({
+  cache,
   uri: 'http://localhost:8080/',
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-  cache: new InMemoryCache(),
 })
 
 ReactDOM.render(

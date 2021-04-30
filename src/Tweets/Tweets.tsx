@@ -3,6 +3,7 @@ import { Icons } from '../Icons'
 import { useTweetsContext } from './TweetsContext'
 
 import {
+  TweetScroll,
   TweetsStyle,
   TweetProfilePhoto,
   TweetHeader,
@@ -21,7 +22,26 @@ import {
 } from './TweetsStyle'
 
 function Tweets() {
-  const { tweetsData } = useTweetsContext()
+  const { tweetsData, fetchMore } = useTweetsContext()
+  const [page, setPage] = React.useState(2)
+
+  function scrollEvent(e: React.UIEvent<HTMLElement>) {
+    const bottom =
+      e.currentTarget.scrollHeight -
+        e.currentTarget.scrollTop -
+        e.currentTarget.clientHeight <
+      1
+
+    if (bottom) {
+      setPage(page + 1)
+
+      fetchMore({
+        variables: {
+          page: page,
+        },
+      })
+    }
+  }
 
   function handleHashtag(e: string) {
     const regex = /#\w*/i
@@ -37,7 +57,7 @@ function Tweets() {
   }
 
   return (
-    <div>
+    <TweetScroll onScroll={scrollEvent}>
       {tweetsData.map((tweet: any, index: any) => {
         return (
           <TweetsStyle key={index}>
@@ -112,7 +132,7 @@ function Tweets() {
           </TweetsStyle>
         )
       })}
-    </div>
+    </TweetScroll>
   )
 }
 

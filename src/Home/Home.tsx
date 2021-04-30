@@ -7,11 +7,7 @@ import { TweetsManagerContext } from '../Tweets/TweetsContext'
 import { NavBar } from '../ui/NavBar'
 import { SideBar } from '../ui/SideBar'
 import { UserManagerContext } from '../user/UserContext'
-import {
-  HomeStyle,
-  HomeContentStyle,
-  HomeContentTweetsScroll,
-} from './HomeStyle'
+import { HomeStyle, HomeContentStyle } from './HomeStyle'
 
 function Home() {
   return (
@@ -22,9 +18,7 @@ function Home() {
           <NavBar />
           <TweetsManagerContext>
             <NewTweet />
-            <HomeContentTweetsScroll>
-              <Tweets />
-            </HomeContentTweetsScroll>
+            <Tweets />
           </TweetsManagerContext>
         </HomeContentStyle>
         <TrendsManagerContext>

@@ -4,6 +4,7 @@ import { gql, useQuery } from '@apollo/client'
 type TweetsContextType = {
   tweetsData: any[]
   newTweet: (arg: any) => void
+  fetchMore: (args: { variables: { page: number } }) => void
 }
 
 const TweetsContext = React.createContext<TweetsContextType | undefined>(
@@ -32,7 +33,7 @@ const TweetsManagerContext = ({ children }: ChildrenProps) => {
       response(page: $page)
     }
   `
-  const { loading, data } = useQuery(GET_TWEETS, {
+  const { loading, data, fetchMore } = useQuery(GET_TWEETS, {
     variables: {
       page: 1,
     },
@@ -114,6 +115,7 @@ const TweetsManagerContext = ({ children }: ChildrenProps) => {
   const contextValue: any = {
     tweetsData,
     newTweet,
+    fetchMore,
   }
 
   return (
