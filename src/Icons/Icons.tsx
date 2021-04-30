@@ -14,6 +14,7 @@ import ImageIcon from './svg/Image.svg'
 import MessagesIcon from './svg/Messages.svg'
 import MessagesFillIcon from './svg/Messages-Fill.svg'
 import MoreIcon from './svg/More.svg'
+import MoreCircleIcon from './svg/More-Circle.svg'
 import NotificationIcon from './svg/Notification.svg'
 import NotificationFillIcon from './svg/Notification-Fill.svg'
 import PollIcon from './svg/Poll.svg'
@@ -59,6 +60,7 @@ function Icons({
     Image: ImageIcon,
     More: MoreIcon,
     MoreFill: MoreIcon,
+    MoreCircle: MoreCircleIcon,
     Notifications: NotificationIcon,
     NotificationsFill: NotificationFillIcon,
     Poll: PollIcon,

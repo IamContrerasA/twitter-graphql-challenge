@@ -24,6 +24,14 @@ const TweetHeader = styled.div`
   font-weight: bold;
   font-size: 15px;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
+
+const TweetHeaderUserInfo = styled.div`
+  font-weight: bold;
+  font-size: 15px;
+  display: flex;
   align-items: center;
 `
 
@@ -40,6 +48,28 @@ const TweetHeaderUserInfoPublic = styled.div`
 const TweetHeaderUserInfoTimeAgo = styled.div`
   color: #6e767d;
   margin-left: 7.5px;
+`
+const TweetHeaderOptions = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`
+
+const TweetHeaderDeleteOptionButton = styled.button`
+  position: relative;
+  z-index: 1;
+  top: 15px;
+  border: none;
+  border-radius: 34px;
+  background: #4d0000;
+  color: #999;
+  :hover {
+    background-color: #999;
+    color: #4d0000;
+  }
+  :active {
+    transform: translateY(2px);
+  }
 `
 
 const TweetInfo = styled.div`
@@ -95,9 +125,12 @@ export {
   TweetsStyle,
   TweetProfilePhoto,
   TweetHeader,
+  TweetHeaderUserInfo,
   TweetHeaderUserInfoName,
   TweetHeaderUserInfoPublic,
   TweetHeaderUserInfoTimeAgo,
+  TweetHeaderOptions,
+  TweetHeaderDeleteOptionButton,
   TweetInfo,
   TweetInfoHashtag,
   TweetAditional,

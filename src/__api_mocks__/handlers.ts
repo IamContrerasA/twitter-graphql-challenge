@@ -83,4 +83,17 @@ export const handlers = [
 
     return res(ctx.status(200), ctx.data({ sucess: true, updatedTweet }))
   }),
+
+  tweet.mutation('delete', (req, res, ctx) => {
+    const { tweetId } = req.variables
+    const tweetData = db.tweets.get(tweetId)
+
+    if (!tweetData) {
+      return res(ctx.status(404))
+    }
+
+    db.tweets.delete(tweetData.id)
+
+    return res(ctx.status(200), ctx.data({ sucess: true }))
+  }),
 ]

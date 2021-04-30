@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Icons } from '../Icons'
+import { useUserContext } from '../user/UserContext'
 import { useTweetsContext } from './TweetsContext'
 
 import {
@@ -7,9 +8,12 @@ import {
   TweetsStyle,
   TweetProfilePhoto,
   TweetHeader,
+  TweetHeaderUserInfo,
   TweetHeaderUserInfoName,
   TweetHeaderUserInfoPublic,
   TweetHeaderUserInfoTimeAgo,
+  TweetHeaderOptions,
+  TweetHeaderDeleteOptionButton,
   TweetInfo,
   TweetInfoHashtag,
   TweetAditional,
@@ -22,8 +26,19 @@ import {
 } from './TweetsStyle'
 
 function Tweets() {
-  const { tweetsData, fetchMore, likeTweet, unlikeTweet } = useTweetsContext()
+  const { user } = useUserContext()
+  const {
+    tweetsData,
+    fetchMore,
+    likeTweet,
+    unlikeTweet,
+    deleteTweet,
+  } = useTweetsContext()
   const [page, setPage] = React.useState(2)
+  const [deleteButton, showDeleteButton] = React.useState({
+    index: -1,
+    isShown: false,
+  })
 
   function scrollEvent(e: React.UIEvent<HTMLElement>) {
     const bottom =
@@ -64,21 +79,47 @@ function Tweets() {
             <TweetProfilePhoto src={tweet.authorId.picture.thumbnail} />
             <div>
               <TweetHeader>
-                <TweetHeaderUserInfoName>
-                  {tweet.authorId.name}
-                </TweetHeaderUserInfoName>
-                <Icons
-                  tag="Confirmed"
-                  width="22.5px"
-                  height="22.5px"
-                  fill="#1da1f2"
-                />
-                <TweetHeaderUserInfoPublic>
-                  {tweet.authorId.publicName}
-                </TweetHeaderUserInfoPublic>
-                <TweetHeaderUserInfoTimeAgo>
-                  . {tweet.createdAt}
-                </TweetHeaderUserInfoTimeAgo>
+                <TweetHeaderUserInfo>
+                  <TweetHeaderUserInfoName>
+                    {tweet.authorId.name}
+                  </TweetHeaderUserInfoName>
+                  <Icons
+                    tag="Confirmed"
+                    width="22.5px"
+                    height="22.5px"
+                    fill="#1da1f2"
+                  />
+                  <TweetHeaderUserInfoPublic>
+                    {tweet.authorId.publicName}
+                  </TweetHeaderUserInfoPublic>
+                  <TweetHeaderUserInfoTimeAgo>
+                    . {tweet.createdAt}
+                  </TweetHeaderUserInfoTimeAgo>
+                </TweetHeaderUserInfo>
+                {tweet.authorId.id !== user.id ? (
+                  <TweetHeaderOptions>
+                    {deleteButton.isShown && deleteButton.index === index && (
+                      <TweetHeaderDeleteOptionButton
+                        onClick={() =>
+                          deleteTweet({ tweetId: tweet.id }, index)
+                        }
+                      >
+                        delete
+                      </TweetHeaderDeleteOptionButton>
+                    )}
+                    <Icons
+                      tag="MoreCircle"
+                      width="15px"
+                      height="15px"
+                      onClick={() =>
+                        showDeleteButton({
+                          index,
+                          isShown: !deleteButton.isShown,
+                        })
+                      }
+                    />
+                  </TweetHeaderOptions>
+                ) : null}
               </TweetHeader>
               <TweetInfo>
                 {

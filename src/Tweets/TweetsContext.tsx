@@ -7,6 +7,7 @@ type TweetsContextType = {
   newTweet: (arg: any) => void
   likeTweet: (arg: any, index: number) => void
   unlikeTweet: (arg: any, index: number) => void
+  deleteTweet: (arg: any, index: number) => void
 }
 
 const TweetsContext = React.createContext<TweetsContextType | undefined>(
@@ -54,12 +55,19 @@ const TweetsManagerContext = ({ children }: ChildrenProps) => {
     }
   `
 
+  const DELETE_TWEET = gql`
+    mutation delete($tweetId: String) {
+      sucess(text: $tweetId)
+    }
+  `
+
   const { loading, data, fetchMore } = useQuery(GET_TWEETS, {
     variables: { page: 1 },
   })
   const [newTweetMutation] = useMutation(NEW_TWEET)
   const [likeTweetMutation] = useMutation(LIKE_TWEET)
   const [unlikeTweetMutation] = useMutation(UNLIKE_TWEET)
+  const [deleteTweetMutation] = useMutation(DELETE_TWEET)
 
   //first render, load the first 10 tweets with 2 fakes
   React.useEffect(() => {
@@ -154,12 +162,24 @@ const TweetsManagerContext = ({ children }: ChildrenProps) => {
       ])
   }
 
+  async function deleteTweet(args: any, index: number) {
+    const response = await deleteTweetMutation({
+      variables: args,
+    })
+    if (response.data.sucess)
+      setTweetsData([
+        ...tweetsData.slice(0, index),
+        ...tweetsData.slice(index + 1),
+      ])
+  }
+
   const contextValue: any = {
     tweetsData,
     fetchMore,
     newTweet,
     likeTweet,
     unlikeTweet,
+    deleteTweet,
   }
 
   return (
