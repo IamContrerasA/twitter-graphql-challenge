@@ -58,18 +58,17 @@ function Tweets() {
     }
   }
 
-  type wordsWithIndex = [
-    {
-      word: string
-      index: number
-    },
-  ]
+  type wordsWithIndex = {
+    word: string
+    index: number
+  }
+
   function handleHashtag(e: string) {
     const regex = /#(\w+)/g
     let regexResult = regex.exec(e)
     if (regexResult == null) return e
 
-    const wordsWithIndex: wordsWithIndex = []
+    const wordsWithIndex: wordsWithIndex[] = []
     while (regexResult != null) {
       wordsWithIndex.push({ word: regexResult[1], index: regexResult.index })
       regexResult = regex.exec(e)
@@ -83,20 +82,17 @@ function Tweets() {
               {e.substring(
                 index === 0
                   ? 0
-                  : wordsWithIndex[index - 1].index +
-                      wordsWithIndex[index - 1].word.length +
-                      1,
+                  : wordsWithIndex[index - 1].index + element.word.length + 1,
                 element.index,
               )}
               <TweetInfoHashtag>{`#${element.word}`}</TweetInfoHashtag>
             </span>
           )
         })}
-        {e.substring(
+        {e.substr(
           wordsWithIndex[wordsWithIndex.length - 1].index +
-            1 +
-            wordsWithIndex[wordsWithIndex.length - 1].word.length,
-          e.length,
+            wordsWithIndex[wordsWithIndex.length - 1].word.length +
+            1,
         )}
       </div>
     )
