@@ -142,7 +142,7 @@ function Tweets() {
                   </TweetHeaderUserInfoPublic>
                   <TimeAgo date={tweet.createdAt} />
                 </TweetHeaderUserInfo>
-                {tweet.authorId.id === user.id ? (
+                {tweet.authorId.id === user?.id ? (
                   <TweetHeaderOptions>
                     {deleteButton.isShown && deleteButton.index === index && (
                       <TweetHeaderDeleteOptionButton

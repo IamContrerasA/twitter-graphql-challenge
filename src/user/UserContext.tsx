@@ -1,8 +1,9 @@
 import * as React from 'react'
 import { gql, useQuery } from '@apollo/client'
+import { User } from '../api'
 
 type UserContextValue = {
-  user: any
+  user?: User
 }
 
 const UserContext = React.createContext<UserContextValue | undefined>(undefined)
@@ -20,7 +21,7 @@ export type ChildrenProps = {
 }
 
 const UserManagerContext = ({ children }: ChildrenProps) => {
-  const [currentUser, setCurrentUser] = React.useState<any>()
+  const [currentUser, setCurrentUser] = React.useState<User>()
 
   const GET_USER = gql`
     query currentUser {
