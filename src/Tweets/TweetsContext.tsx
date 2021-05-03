@@ -1,13 +1,14 @@
 import * as React from 'react'
 import { gql, useQuery, useMutation } from '@apollo/client'
+import { Tweet } from '../api'
 
 type TweetsContextType = {
-  tweetsData: any[]
+  tweetsData: Tweet[]
   fetchMore: (args: { variables: { page: number } }) => void
-  newTweet: (arg: any) => void
-  likeTweet: (arg: any, index: number) => void
-  unlikeTweet: (arg: any, index: number) => void
-  deleteTweet: (arg: any, index: number) => void
+  newTweet: (arg: { text: string; picture: string }) => void
+  likeTweet: (arg: { tweetId: string }, index: number) => void
+  unlikeTweet: (arg: { tweetId: string }, index: number) => void
+  deleteTweet: (arg: { tweetId: string }, index: number) => void
 }
 
 const TweetsContext = React.createContext<TweetsContextType | undefined>(
@@ -29,7 +30,7 @@ type ChildrenProps = {
 }
 
 const TweetsManagerContext = ({ children }: ChildrenProps) => {
-  const [tweetsData, setTweetsData] = React.useState<any[]>([])
+  const [tweetsData, setTweetsData] = React.useState<Tweet[]>([])
 
   const GET_TWEETS = gql`
     query tweets($page: Number!) {
@@ -131,14 +132,14 @@ const TweetsManagerContext = ({ children }: ChildrenProps) => {
     setTweetsData([...fakeTweets, ...data.response.tweets])
   }, [data, loading])
 
-  async function newTweet(args: any) {
+  async function newTweet(args: { text: string; picture: string }) {
     const response = await newTweetMutation({
       variables: args,
     })
     setTweetsData([response.data.newTweet, ...tweetsData])
   }
 
-  async function likeTweet(args: any, index: number) {
+  async function likeTweet(args: { tweetId: string }, index: number) {
     const response = await likeTweetMutation({
       variables: args,
     })
@@ -150,7 +151,7 @@ const TweetsManagerContext = ({ children }: ChildrenProps) => {
       ])
   }
 
-  async function unlikeTweet(args: any, index: number) {
+  async function unlikeTweet(args: { tweetId: string }, index: number) {
     const response = await unlikeTweetMutation({
       variables: args,
     })
@@ -162,7 +163,7 @@ const TweetsManagerContext = ({ children }: ChildrenProps) => {
       ])
   }
 
-  async function deleteTweet(args: any, index: number) {
+  async function deleteTweet(args: { tweetId: string }, index: number) {
     const response = await deleteTweetMutation({
       variables: args,
     })
@@ -173,7 +174,7 @@ const TweetsManagerContext = ({ children }: ChildrenProps) => {
       ])
   }
 
-  const contextValue: any = {
+  const contextValue: TweetsContextType = {
     tweetsData,
     fetchMore,
     newTweet,
