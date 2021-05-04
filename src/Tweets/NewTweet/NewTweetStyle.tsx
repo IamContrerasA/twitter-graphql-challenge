@@ -17,6 +17,7 @@ const NewTweetUserPhoto = styled.img`
 const NewTweetWrapper = styled.div`
   margin-left: 20px;
   width: 100%;
+  max-width: 600px;
   max-height: 400px;
   display: flex;
   flex-direction: column;
@@ -28,7 +29,6 @@ const NewTweetContent = styled.span`
   font-size: 19px;
   color: white;
   display: block;
-  width: 100%;
   overflow: scroll;
   min-height: 40px;
   margin-top: 15px;

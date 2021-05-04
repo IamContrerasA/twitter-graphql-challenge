@@ -64,7 +64,6 @@ function Tweets() {
   }
 
   function handleHashtagURL(e: string) {
-    //const regexUrl = /(http?\w:\/\/)\w[^\s]+/g
     const regexHashtag = /#(\w+)/g
     let regexResult = regexHashtag.exec(e)
     if (regexResult == null) return e
