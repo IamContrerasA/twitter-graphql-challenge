@@ -82,31 +82,31 @@ const TweetInfoHashtag = styled.span`
   color: #1da1f2;
 `
 
-const TweetAditional = styled.div`
+const TweetUrl = styled.div`
   border: 1px solid #6e767d;
   box-sizing: border-box;
   border-radius: 10px;
 `
 
-const TweetPhoto = styled.img`
+const TweetUrlImg = styled.img`
   width: 100%;
   border-radius: 9px;
 `
 
-const TweetAditionalContent = styled.div`
+const TweetUrlContent = styled.div`
   padding: 10px;
 `
 
-const TweetAditionalTitle = styled.div`
+const TweetUrlTitle = styled.div`
   font-weight: bold;
   color: white;
 `
 
-const TweetAditionalText = styled.div`
+const TweetUrlDescription = styled.div`
   color: #6e767d;
 `
 
-const TweetAditionalLink = styled.div`
+const TweetUrlDomain = styled.div`
   display: flex;
   align-items: center;
   color: #6e767d;
@@ -133,11 +133,11 @@ export {
   TweetHeaderDeleteOptionButton,
   TweetInfo,
   TweetInfoHashtag,
-  TweetAditional,
-  TweetPhoto,
-  TweetAditionalContent,
-  TweetAditionalTitle,
-  TweetAditionalText,
-  TweetAditionalLink,
+  TweetUrl,
+  TweetUrlImg,
+  TweetUrlContent,
+  TweetUrlTitle,
+  TweetUrlDescription,
+  TweetUrlDomain,
   TweetFooter,
 }

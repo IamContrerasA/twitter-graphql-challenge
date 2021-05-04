@@ -1,9 +1,11 @@
 type ID = string
 
-export interface ProfilePicture {
-  thumbnail: string
-  medium: string
-  large: string
+export interface LinkPreview {
+  url: string
+  title: string
+  description: string
+  domain: string
+  img: string
 }
 
 export interface Tweet {
@@ -11,7 +13,7 @@ export interface Tweet {
   authorId: User
   picture: string
   text: string
-  url?: string
+  hasURL?: LinkPreview
   likeCount: number
   replayCount: number
   retweetCount: number
@@ -19,6 +21,12 @@ export interface Tweet {
   hasReplay: boolean
   hasRetweet: boolean
   createdAt: string
+}
+
+export interface ProfilePicture {
+  thumbnail: string
+  medium: string
+  large: string
 }
 
 export interface User {

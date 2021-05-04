@@ -84,19 +84,22 @@ const TweetsManagerContext = ({ children }: ChildrenProps) => {
           name: 'Upwork',
           publicName: '@Name',
         },
-
         text: `How alternative staffing solutions help organizations improve their #TalentSourcing :
           👏Ability to scale business as needed
           👏Access to qualified #RemoteWorkers globally
           👏Improved productivity with faster hires and streamlined processes`,
-        aditionalPhoto:
-          'https://assets-global.website-files.com/5ec7dad2e6f6295a9e2a23dd/5f3bc4c67b9de11ad00e1395_Onboarding%20Talent.png',
-        aditionalTitle:
-          'How Alternative Staffing Solutions Stronger Recruitment | Upwork',
-        aditionalText: `Talent sourcing is important for enterprise growth, and
+        url: {
+          url: 'https://upwork.com',
+          img:
+            'https://assets-global.website-files.com/5ec7dad2e6f6295a9e2a23dd/5f3bc4c67b9de11ad00e1395_Onboarding%20Talent.png',
+          title:
+            'How Alternative Staffing Solutions Stronger Recruitment | Upwork',
+          description: `Talent sourcing is important for enterprise growth, and
         alternative staffing solutions like Upwork enable hiring managers
         to focus on the...`,
-        aditionalLink: 'upwork.com',
+          domain: 'upwork.com',
+        },
+
         replayCount: 0,
         retweetCount: 998,
         likeCount: 999,
@@ -121,7 +124,7 @@ const TweetsManagerContext = ({ children }: ChildrenProps) => {
           📱💻: NBA League Pass #subscribe!
           ➡️: https://app.link.nba.com/e/leaguepass
         `,
-        aditionalPhoto:
+        picture:
           'https://pbs.twimg.com/media/E0CRN-EXEAAgsHV?format=jpg&name=medium',
         replayCount: 35,
         retweetCount: 114,

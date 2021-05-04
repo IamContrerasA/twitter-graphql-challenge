@@ -50,11 +50,21 @@ export const createUser = (
   picture: user.picture,
 })
 
-export const createTweet = (text: string, picture: string, url?: string) => {
+export const createTweet = (text: string, picture: string) => {
+  const regexUrl = /(http?\w:\/\/)\w[^\s]+/g
+  const regexResult = regexUrl.exec(text)
+
   const tweet = {
     id: faker.random.uuid(),
     authorId: { ...currentUser, id: currentUserId, tweets: [] },
-    url,
+    url: regexResult
+      ? {
+          img: getUniqueRandomImage(),
+          title: faker.lorem.words(10),
+          description: faker.lorem.text(),
+          domain: `${faker.lorem.slug(3)}.com`,
+        }
+      : null,
     picture,
     text,
     likeCount: 0,

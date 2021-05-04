@@ -16,12 +16,12 @@ import {
   TweetHeaderDeleteOptionButton,
   TweetInfo,
   TweetInfoHashtag,
-  TweetAditional,
-  TweetPhoto,
-  TweetAditionalContent,
-  TweetAditionalTitle,
-  TweetAditionalText,
-  TweetAditionalLink,
+  TweetUrl,
+  TweetUrlImg,
+  TweetUrlContent,
+  TweetUrlTitle,
+  TweetUrlDescription,
+  TweetUrlDomain,
   TweetFooter,
 } from './TweetsStyle'
 
@@ -63,15 +63,16 @@ function Tweets() {
     index: number
   }
 
-  function handleHashtag(e: string) {
-    const regex = /#(\w+)/g
-    let regexResult = regex.exec(e)
+  function handleHashtagURL(e: string) {
+    //const regexUrl = /(http?\w:\/\/)\w[^\s]+/g
+    const regexHashtag = /#(\w+)/g
+    let regexResult = regexHashtag.exec(e)
     if (regexResult == null) return e
 
     const wordsWithIndex: wordsWithIndex[] = []
     while (regexResult != null) {
       wordsWithIndex.push({ word: regexResult[1], index: regexResult.index })
-      regexResult = regex.exec(e)
+      regexResult = regexHashtag.exec(e)
     }
 
     const newSentenceWithHashtag = (
@@ -121,7 +122,7 @@ function Tweets() {
 
   return (
     <TweetScroll onScroll={scrollEvent}>
-      {tweetsData.map((tweet: any, index: any) => {
+      {tweetsData.map((tweet: any, index: number) => {
         return (
           <TweetsStyle key={index}>
             <TweetProfilePhoto src={tweet.authorId.picture.thumbnail} />
@@ -172,35 +173,31 @@ function Tweets() {
                 {
                   // eslint-disable-next-line @typescript-eslint/no-unsafe-call
                   tweet.text?.split(`\n`).map((e: string, i: number) => {
-                    return <div key={i}>{handleHashtag(e)}</div>
+                    return <div key={i}>{handleHashtagURL(e)}</div>
                   })
                 }
               </TweetInfo>
-              {tweet.aditionalPhoto || tweet.picture ? (
-                <TweetAditional>
-                  <TweetPhoto src={tweet.aditionalPhoto || tweet.picture} />
-                  {tweet.aditionalTitle ||
-                  tweet.aditionalText ||
-                  tweet.aditionalLink ? (
-                    <TweetAditionalContent>
-                      <TweetAditionalTitle>
-                        {tweet.aditionalTitle}
-                      </TweetAditionalTitle>
-                      <TweetAditionalText>
-                        {tweet.aditionalText}
-                      </TweetAditionalText>
-                      <TweetAditionalLink>
+              {tweet.url || tweet.picture ? (
+                <TweetUrl>
+                  <TweetUrlImg src={tweet.url?.img || tweet.picture} />
+                  {tweet.url ? (
+                    <TweetUrlContent>
+                      <TweetUrlTitle>{tweet.url.title}</TweetUrlTitle>
+                      <TweetUrlDescription>
+                        {tweet.url.description}
+                      </TweetUrlDescription>
+                      <TweetUrlDomain>
                         <Icons
                           tag="TweetLinked"
                           width="19px"
                           height="19px"
                           fill="#6e767d"
                         />
-                        {tweet.aditionalLink}
-                      </TweetAditionalLink>
-                    </TweetAditionalContent>
+                        {tweet.url.domain}
+                      </TweetUrlDomain>
+                    </TweetUrlContent>
                   ) : null}
-                </TweetAditional>
+                </TweetUrl>
               ) : null}
               <TweetFooter>
                 <Icons tag="Reply" width="19px" height="19px" fill="#6e767d" />
