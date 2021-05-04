@@ -65,13 +65,14 @@ function Tweets() {
   }
 
   function handleHashtagURL(e: string) {
-    const regexHashtag = /#(\w+)/g
+    //const regexHashtag = /#(\w+)/g
+    const regexHashtag = /(http?\w:\/\/)\w[^\s]+|#(\w+[^\s])/g
     let regexResult = regexHashtag.exec(e)
     if (regexResult == null) return e
 
     const wordsWithIndex: wordsWithIndex[] = []
     while (regexResult != null) {
-      wordsWithIndex.push({ word: regexResult[1], index: regexResult.index })
+      wordsWithIndex.push({ word: regexResult[0], index: regexResult.index })
       regexResult = regexHashtag.exec(e)
     }
 
@@ -83,10 +84,12 @@ function Tweets() {
               {e.substring(
                 index === 0
                   ? 0
-                  : wordsWithIndex[index - 1].index + element.word.length + 1,
+                  : wordsWithIndex[index - 1].index +
+                      wordsWithIndex[index - 1].word.length +
+                      1,
                 element.index,
               )}
-              <TweetInfoHashtag>{`#${element.word}`}</TweetInfoHashtag>
+              <TweetInfoHashtag href="#">{`${element.word} `}</TweetInfoHashtag>
             </span>
           )
         })}
@@ -97,6 +100,7 @@ function Tweets() {
         )}
       </div>
     )
+    // return e
     return newSentenceWithHashtag
   }
 
@@ -170,12 +174,9 @@ function Tweets() {
                 ) : null}
               </TweetHeader>
               <TweetInfo>
-                {
-                  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-                  tweet.text.split(`\n`).map((e: string, i: number) => {
-                    return <div key={i}>{handleHashtagURL(e)}</div>
-                  })
-                }
+                {tweet.text.split(`\n`).map((e: string, i: number) => {
+                  return <div key={i}>{handleHashtagURL(e)}</div>
+                })}
               </TweetInfo>
               {tweet.hasURL || tweet.picture ? (
                 <TweetUrl>

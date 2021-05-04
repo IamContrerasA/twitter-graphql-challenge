@@ -78,8 +78,10 @@ const TweetInfo = styled.div`
   line-height: 1.2;
 `
 
-const TweetInfoHashtag = styled.span`
+const TweetInfoHashtag = styled.a`
   color: #1da1f2;
+  border: 0;
+  text-decoration: none;
 `
 
 const TweetUrl = styled.div`
