@@ -57,14 +57,6 @@ export const createTweet = (text: string, picture: string) => {
   const tweet = {
     id: faker.random.uuid(),
     authorId: { ...currentUser, id: currentUserId, tweets: [] },
-    url: regexResult
-      ? {
-          img: getUniqueRandomImage(),
-          title: faker.lorem.words(10),
-          description: faker.lorem.text(),
-          domain: `${faker.lorem.slug(3)}.com`,
-        }
-      : null,
     picture,
     text,
     likeCount: 0,
@@ -76,6 +68,17 @@ export const createTweet = (text: string, picture: string) => {
     createdAt: new Date().toISOString(),
   }
 
+  if (regexResult) {
+    Object.assign(tweet, {
+      hasURL: {
+        url: regexResult[1],
+        img: getUniqueRandomImage(),
+        title: faker.lorem.words(10),
+        description: faker.lorem.text(),
+        domain: `${faker.lorem.slug(3)}.com`,
+      },
+    })
+  }
   tweetsTable.set(tweet.id, tweet)
 
   return tweet

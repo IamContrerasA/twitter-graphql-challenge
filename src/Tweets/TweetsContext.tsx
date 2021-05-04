@@ -88,7 +88,7 @@ const TweetsManagerContext = ({ children }: ChildrenProps) => {
           👏Ability to scale business as needed
           👏Access to qualified #RemoteWorkers globally
           👏Improved productivity with faster hires and streamlined processes`,
-        url: {
+        hasURL: {
           url: 'https://upwork.com',
           img:
             'https://assets-global.website-files.com/5ec7dad2e6f6295a9e2a23dd/5f3bc4c67b9de11ad00e1395_Onboarding%20Talent.png',

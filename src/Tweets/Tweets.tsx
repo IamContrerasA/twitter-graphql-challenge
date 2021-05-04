@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Tweet } from '../api'
 import { Icons } from '../Icons'
 import { useUserContext } from '../user/UserContext'
 import { TimeAgo } from './TimeAgo'
@@ -121,7 +122,7 @@ function Tweets() {
 
   return (
     <TweetScroll onScroll={scrollEvent}>
-      {tweetsData.map((tweet: any, index: number) => {
+      {tweetsData.map((tweet: Tweet, index: number) => {
         return (
           <TweetsStyle key={index}>
             <TweetProfilePhoto src={tweet.authorId.picture.thumbnail} />
@@ -171,19 +172,19 @@ function Tweets() {
               <TweetInfo>
                 {
                   // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-                  tweet.text?.split(`\n`).map((e: string, i: number) => {
+                  tweet.text.split(`\n`).map((e: string, i: number) => {
                     return <div key={i}>{handleHashtagURL(e)}</div>
                   })
                 }
               </TweetInfo>
-              {tweet.url || tweet.picture ? (
+              {tweet.hasURL || tweet.picture ? (
                 <TweetUrl>
-                  <TweetUrlImg src={tweet.url?.img || tweet.picture} />
-                  {tweet.url ? (
+                  <TweetUrlImg src={tweet.hasURL?.img ?? tweet.picture} />
+                  {tweet.hasURL ? (
                     <TweetUrlContent>
-                      <TweetUrlTitle>{tweet.url.title}</TweetUrlTitle>
+                      <TweetUrlTitle>{tweet.hasURL.title}</TweetUrlTitle>
                       <TweetUrlDescription>
-                        {tweet.url.description}
+                        {tweet.hasURL.description}
                       </TweetUrlDescription>
                       <TweetUrlDomain>
                         <Icons
@@ -192,7 +193,7 @@ function Tweets() {
                           height="19px"
                           fill="#6e767d"
                         />
-                        {tweet.url.domain}
+                        {tweet.hasURL.domain}
                       </TweetUrlDomain>
                     </TweetUrlContent>
                   ) : null}
